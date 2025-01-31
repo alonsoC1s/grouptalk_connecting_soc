@@ -1,0 +1,437 @@
+---
+title: "Connecting SOC with RL -- Importance sampling"
+subtitle: "AI as a tool in Mathematics"
+footer: "AI for math"
+author: "Alonso Cisneros"
+institute: Freie Universität Berlin
+format:
+    revealjs:
+        output-file: index.html
+        incremental: true
+        html-math-method: mathjax
+        theme: zib.scss
+        default-image-extension: png
+        mermaid-format: svg
+        multiplex: true
+        title-slide-attributes: 
+          data-background-color: "#000099"
+    beamer:
+        papersize: a4
+        fig-align: center
+        default-image-extension: pdf
+bibliography: refs.bib
+lang: en-us
+self-contained: true
+lightbox: false
+engine: julia
+julia: 
+  exeflags: ["--project"]
+nocite: |
+  @*
+---
+
+#
+
+![](img/diagram1.svg)
+
+:::{.notes}
+What optimization models have we seen in the seminar so far?
+:::
+
+-----
+
+![](img/diagram3.svg)
+
+:::{.notes}
+- So far we've seen RL as a fancy tool to explore complicated spaces. Today, we're going
+to think of how the discipline of RL as a whole introduces new ideas to other areas of
+mathematics and creates new fertile ground.
+
+- Instead of finding ways of computing faster, we're looking for avenues to come up with entirely new ways of posing problems that allow us to use all of the work that was already invested in "AI"
+:::
+
+
+
+# Outline
+
+:::{.nonincremental}
+1. _Crash_ course on RL
+
+2. What is importance sampling
+  - The connection to optimization
+  - Optimal biasing
+
+4. Optimal biasing as an RL problem
+:::
+
+
+# Crash course on Reinforcement Learning
+
+. . .
+
+![A miniopoly board](img/board.svg)
+
+:::{.notes}
+- I'm training a robot to become the best Miniopoly player
+- The rules:
+  - Players play in turns
+  - They move a number of squares determined by a 4-sided dice roll
+  - After completing a lap, it gets a reward of $x$ dollars
+  - The trap squares do what it says on the square
+  - They can buy property and hotels in the squares.
+    - If they land of a square someone owns, they pay
+    - If someone lands on their square, they charge rent
+  - The game ends when someone runs out of money
+:::
+
+-----
+
+- The game has a state at turn $t$ denoted $s_t$
+- At a turn $t$ players roll the dice
+- The change in money after buying/paying rent/charging rent is recorded as a reward $r_t$
+
+. . .
+
+:::{.callout-important}
+We train our robot to maximize the rewards as it takes actions exploring the space of
+states
+:::
+
+:::{.notes}
+- The state of the game an any given time is information like, who owns what squares, how
+much money they have, in what positions each player is, and so on.
+- Once a player lands in another square, they can choose to buy it if available. If it's
+not, we carry out the accounting of how much rent is, and let the player know how much it
+won/lost and to what square this is connected.
+:::
+
+## Can you describe the state space? {.center}
+
+. . . 
+
+::: {.r-fit-text}
+How does it _look_ like?
+:::
+
+## {.center}
+
+It's hard to describe the state space, but we can study the dynamics
+
+. . .
+
+::: {.r-stack}
+:::{.fragment .fade-out}
+![](img/transicion.svg){.r-stretch}
+:::
+
+:::{.fragment}
+![](img/transicion-markov.svg){.r-stretch}
+:::
+:::
+
+-----
+
+![](img/diagram_rl.svg)
+
+:::{.notes}
+- We just reviewed very quickly the first bubble
+:::
+
+## What if we don't know how square transitions work?
+
+- We calculated transition probability _with_ the knowledge of the dice
+
+. . .
+
+## 5 minutes to think
+
+- What is a reasonable way of guessing transition probabilities?
+- Can I be sure to observe even improbable but still possible states?
+
+:::{.fragment}
+The right answers are:
+
+- By simulating the transitions and get empirical estimates
+- No
+:::
+
+:::{.notes}
+- Without knowledge of the dice, we would be left to guess. 
+:::
+
+## Markov Chain Monte Carlo
+
+- We let the robot roam around and buy squares as it pleases
+  - For any square, it can either buy it or not
+- We register what it gained or lost by buying or not buying a square by the end of the
+  game.
+
+::: {.fragment .center}
+![](img/hist-miniopoly.svg)
+:::
+
+:::{.notes}
+- Graph:
+  - This is a violin plot. It shows the estimated probability densities of observing...
+  - The x axis shows the different squares
+  - The y axis shows the estimated rewards. i.e. money
+  - The red distributions correspond to the expected reward when buying a square, while
+    the blue the expected loss when not buying them
+  - i.e. When we buy squares we expect to profit from them, but clearly not all squares are as profitable, look at the different shapes of the distributions. On the other hand, it looks like losing any given square leads to the same expected loss
+:::
+
+-----
+
+![What we've covered so far](img/diagram_IS.svg)
+
+:::{.notes}
+Now we have introduced MCMC as a way for our robot to explore it's environment and
+estimate which moves are beneficial to his goal. This is what the diagram is representing
+
+
+Moving on...
+:::
+
+# Importance Sampling
+
+- We wanted to compute the expected reward of the robot after the entire game
+- Not every problem is this well behaved
+- This property is called _metastability_
+- Importance sampling aims to remedy this
+
+:::{.fragment .callout-important}
+The general idea of importance sampling is to draw random variables from another
+probability measure and subsequently weight them back in order to still have an unbiased
+estimator of the desired quantity of interest
+:::
+
+:::{.notes}
+- We **estimated** this quantity by observing and measuring an empirical average. But our
+  approximation for extremely unlikely states will always be bad by virtue of how little
+  samples we have.
+- Many problems, like molecular dynamics, chemical reactions, etc... have extremely like
+  states, and other extremely unlikely states. If we were to use MCMC, we would need
+  impractical amounts of time to simulate it and observe every state
+- Metastability makes MCMC extremely hard to apply. The variance of our estimations is
+  always going to be enormous under these conditions
+- We can aim to make sampling faster by reducing the inherent variance
+- **After Callout** In the case of stochastic processes this change of measure corresponds
+  to adding a control to the original process
+:::
+
+-----
+
+::: {.columns}
+::: {.column}
+![](img/double_well.svg){width="100%"}
+:::
+::: {.column}
+- We want to explore space
+  - We can't make it to the other well
+- The jumps are exponentially less probable w.r.t the height of the barrier
+:::
+:::
+<!-- end columns -->
+:::{.notes}
+- It turns out that there is an optimal way to design such a scheme, leading to
+substantially reduced mean hitting times which do not scale exponentially with the energy
+barrier anymore
+:::
+
+## More formally...
+
+- The metastable stochastic system we sample from follows Langevin dynamics
+\begin{equation}
+  \mathrm{d}X_s = - \nabla V(X_s) \, \mathrm{d}s + \sigma(X_s) \, \mathrm{d}W_s
+\end{equation}
+- We want to hit a target set $\mathcal{T}$. We define
+\begin{equation}
+  \tau = \inf \{ s > 0 \mid X_s \in \mathcal{T} \}
+\end{equation}
+- We're interested in computing $I: C([0, \infty), \mathbb{R}^d) \to \mathbb{R}$
+\begin{equation}
+  I(X) \coloneqq \exp(- \mathcal{W}(X))
+\end{equation}
+
+:::{.notes}
+- Where:
+  - $X_s$ is the position of our particle at time $s$
+  - $V$ is a "potential" 
+  - We assume there exists a unique strong solution that is ergodic
+- Note that $\tau$ is a.s. finite
+- Where $\mathcal{W}$ serving as a measure of "work" over a trajectory
+:::
+
+
+-----
+
+Our main goal is to compute
+$$
+  \Psi(X) \coloneqq \mathbb{E}^x [I(X)] \coloneqq \mathbb{E}[I(X) \mid X_0 = x]
+$$
+
+But...
+
+. . .
+
+- MCMC has terrible properties because of metastability
+- No closed form exists
+
+. . .
+
+:::{.callout-tip}
+ - We can "push" the particle adding force, as long as we account for it and correct for
+ that bias
+- That "push" is achieved by adding a control $u$.
+:::
+
+-----
+
+The new, controlled dynamics are now described as
+\begin{equation}
+\label{eq: controlled langevin sde}
+\mathrm dX_s^u = (-\nabla V(X_s^u) + \sigma(X_s^u)  \,  u(X_s^u))\mathrm ds + \sigma(X_s^u) \mathrm dW_s, \qquad X_0^u = x 
+\end{equation}
+
+. . .
+
+Via Girsanov, we can relate our QoI to the original as such:
+\begin{equation}
+\label{eq: expectation IS}
+    \mathbb{E}^x\left[I(X)\right] = \mathbb{E}^x\left[I(X^u) M^u\right],
+\end{equation}
+
+. . .
+
+where the exponential martingale
+\begin{equation}
+\label{eq: girsanov martingale}
+M^u \coloneqq \exp{\left(-  \int_0^{\tau^u} u(X_s^u) \cdot \mathrm dW_s - \frac{1}{2} \int_0^{\tau^u} |u(X_s^u)|^2 \mathrm ds \right)}
+\end{equation}
+corrects for the bias the pushing introduces.
+
+-----
+
+:::{.callout-important}
+The previous relationship always holds. But the variance of the estimator depends
+_heavily_ on the choice of $u$.
+:::
+
+. . .
+
+Clearly, we aim to achieve the smallest possible variance through on _optimal control_
+$u^*$
+\begin{equation}
+\label{eq: variance minimization}
+\operatorname{Var} \left( I(X^{u^*}) M^{u^*} \right)
+= \inf_{u \in \mathcal{U}} \left\{ \operatorname{Var} (I(X^u) M^u) \right\}
+\end{equation}
+
+
+:::{.notes}
+- Where:
+  - $X^{u}_{s}$ is the position of our particle at time $s$ under control $u$
+  - The potential $u$ is an Itô integrable function satisfying a linear growth condition
+- Note that $\tau$ is a.s. finite
+- Where $\mathcal{W}$ serving as a measure of "work" over a trajectory
+:::
+
+## Connection to optimization
+
+
+It turns out ^[Feynman--Kac $\to$ Hopf--Cole Transformation $\to$ Hamilton-Jacobi-Bellman]
+that the problem of minimizing variance corresponds to a problem in optimal control
+
+. . .
+
+The cost functional $J$ to find the variance minimizing control is
+\begin{equation}
+\label{eq: cost functional}
+J(u; x) \coloneqq \mathbb{E}^x\left[\mathcal{W}(X^u) + \frac{1}{2} \int_0^{\tau^u} |u(X_s^u)|^2 \mathrm ds \right],
+\end{equation}
+
+-----
+
+With this formulation,
+\begin{equation}
+    \Phi(x) = \inf_{u \in \mathcal{U}} J(u; x).
+\end{equation}
+
+
+:::{.callout-important}
+The optimal bias achieves zero variance:
+\begin{equation}
+    \operatorname{Var} \left( I(X^{u^*}) M^{u^*} \right) = 0.
+\end{equation}
+:::
+
+# Optimal biasing through RL
+
+![](img/diagram_complete.svg)
+
+------
+
+- Let's reconsider the SOC problem (excuse the change in notation)
+<!-- - We discretize with Euler--Maruyama -->
+- We discretize the dynamics equation
+\begin{align*}
+s_{t+1} &= s_t + \left( -\nabla V(s_t)  + \sigma u(s_t)\right) \Delta t + \sigma \, \sqrt{\Delta t} \, \eta_{t+1} \\
+s_0 &= x
+\end{align*}
+
+:::{.notes}
+- Sorry for the slightly different notation
+- Where
+  - Our state is now represented by $s$
+  - We have the same potential $V$
+  - The diffusion term is $\sigma$ again
+  - $\Delta t$ is the length of the time step
+  - The term $\sqrt{\Delta t} \eta_{t+1}$ is a Brownian increment, $\eta_t \sim N(0, 1)$
+:::
+
+-----
+
+The time-discretized objective function is given by
+\begin{equation}
+\small
+J(u; x) \coloneqq \mathbb{E}^{x} \left[ g(s_{T_u}) + \sum_{t=0}^{T_{u-1}} f(s_t) \Delta t + \frac{1}{2} \sum_{t=0}^{T_{u-1}} |u(s_t)|^2 \Delta t \right]
+\end{equation}
+
+- Our stopping time $\tau$ is now denoted $T_u$
+
+<!-- ## Some formalities
+
+- The state space $\mathcal{S}$ is all possible $s \in \mathbb{R}^d$
+- The action space $\mathcal{A}$ is the codomain of all possible controls $\mathbb{R}^d$
+- The stopping time $T_u$ for the controlled process is a.s. finite
+
+. . .
+
+- We'll approximate the control with Galerkin projections $u_\theta$
+- We still need to derive probability transition and reward functions
+-->
+
+-----
+
+- The return we want to optimize depends on a rewards function
+$$
+r_t = r(s_t, a_t) \coloneqq
+\begin{cases}
+  - f(s_t) \Delta t - \frac{1}{2} |a_t|^2 \Delta t & \text{if} \; s_t \notin \mathcal{T} \\
+  -g(s_t) & \text{if} \quad s_t \in \mathcal{T}.
+\end{cases}
+$$
+
+:::{.notes}
+- The reward function is defined such that the corresponding return along a trajectory
+equals the negative term inside the expectation of the time-discretized cost functional
+- Notice that the reward signal is in general not sparse since the agent receives feedback
+at each time step but the choice of the running cost f and the final cost g can influence
+this statement.
+:::
+
+-----
+
+![](img/diagram_complete.svg)
+
+# References

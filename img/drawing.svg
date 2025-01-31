@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg1"
+   inkscape:export-filename="diagram3]1.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   sodipodi:docname="drawing.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.3705394"
+     inkscape:cx="579.69878"
+     inkscape:cy="369.56253"
+     inkscape:window-width="2560"
+     inkscape:window-height="1440"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="DartArrow"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Dart arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6" />
+    </marker>
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect12"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect9"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <marker
+       style="overflow:visible"
+       id="ArrowTriangleStylized"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Stylized triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z"
+         id="path4" />
+    </marker>
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect3"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1"
+       is_visible="true"
+       lpeversion="1.3"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false"
+       uniform="false" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Layer 3"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:Baskerville;-inkscape-font-specification:Baskerville;text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;paint-order:stroke markers fill"
+       id="text8-7-3"
+       transform="translate(0.74374772,-2.9063761)"><textPath
+         xlink:href="#path12"
+         startOffset="50%"
+         id="textPath13"><tspan
+           style="font-size:5.64444px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+           id="tspan12-5">Optimal Biasing</tspan></textPath></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:Baskerville;-inkscape-font-specification:Baskerville;text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;paint-order:stroke markers fill"
+       id="text8-7-1"
+       y="110.32819"
+       x="85.394608"><tspan
+         sodipodi:role="line"
+         style="font-size:5.64444px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+         x="85.394608"
+         y="110.32819"
+         id="tspan12-3">the small leap</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="display:inline">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.752546;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;marker-end:url(#DartArrow);paint-order:stroke markers fill"
+       d="m 121.81487,48.802377 c 10.44905,-5.170292 20.89788,-10.340476 31.45456,-9.116481 10.55668,1.223995 21.22036,8.842081 31.88424,16.460311"
+       id="path12"
+       inkscape:path-effect="#path-effect12"
+       inkscape:original-d="m 121.81487,48.802377 c 10.44905,-5.170291 20.89788,-10.340479 31.34714,-15.510872 10.6641,7.618385 21.32778,15.23647 31.99166,22.854702"
+       transform="matrix(0.86522663,0,0,1,21.5518,0)"
+       inkscape:label="leftright arrow"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.543565;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;marker-start:url(#ArrowTriangleStylized);marker-end:url(#ArrowTriangleStylized);paint-order:stroke markers fill"
+       d="m 66.878146,82.036633 c -2.680213,6.942753 -5.360372,13.885366 -5.357918,19.985757 0.0025,6.10039 2.687527,11.35807 5.372648,16.61584"
+       id="path3"
+       inkscape:path-effect="#path-effect3"
+       inkscape:original-d="m 66.878146,82.036633 c -2.680213,6.942753 -5.360373,13.885366 -8.040642,20.828267 2.685179,5.25788 5.37025,10.51556 8.055372,15.77333"
+       transform="matrix(1.3427728,0,0,1.2350672,-19.914925,-14.737968)"
+       sodipodi:nodetypes="ccc"
+       inkscape:label="updown arrow" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="display:inline;opacity:0.75;fill:#006699;fill-opacity:1;stroke:#000000;stroke-width:0.32424;stroke-linecap:round;stroke-linejoin:bevel;stroke-opacity:0.992157;paint-order:stroke markers fill"
+       d="M 55.15038,65.042826 C 45.929208,61.333159 40.771109,56.104401 40.241146,50.310138 39.711183,44.515875 43.809319,38.1567 52.536042,34.305636 c 8.726723,-3.851065 22.080991,-5.193557 29.253156,1.695962 7.172166,6.889519 8.16137,22.010224 2.0138,28.475772 -6.147571,6.465549 -19.431446,4.275123 -28.652618,0.565456 z"
+       id="path1"
+       inkscape:path-effect="#path-effect1"
+       inkscape:original-d="M 51.087411,66.562023 C 45.929208,61.333159 40.771109,56.104401 35.612802,50.875432 39.711184,44.515875 43.809319,38.1567 47.907699,31.797144 61.262765,30.454571 74.617033,29.112079 87.9721,27.769506 88.961364,42.891117 89.950568,58.011822 90.939832,73.133432 77.655427,70.942919 64.371552,68.752493 51.087411,66.562023 Z"
+       sodipodi:nodetypes="cccccc"
+       transform="matrix(2.3667293,0,0,1.9693161,-85.245574,-50.31284)" />
+    <path
+       style="fill:#006699;stroke:#000000;stroke-width:0.430126;stroke-linecap:round;stroke-linejoin:bevel;stroke-opacity:0.992157;paint-order:stroke markers fill;fill-opacity:1;opacity:0.75"
+       d="m 27.803697,141.95659 c -2.577962,-5.01689 -3.001924,-15.19197 0.460505,-22.21114 3.462428,-7.01917 10.810955,-10.88227 18.195033,-13.07275 7.384079,-2.19047 14.803265,-2.70823 23.31793,-2.70822 8.514664,0 18.124275,0.51776 22.611199,7.76058 4.486925,7.24282 3.850995,21.21015 -5.760135,28.15862 -9.61113,6.94847 -28.196702,6.87781 -39.855702,6.91314 -11.659001,0.0353 -16.390868,0.17665 -18.96883,-4.84023 z"
+       id="path2"
+       inkscape:path-effect="#path-effect2"
+       inkscape:original-d="M 25.649697,147.11479 C 25.225735,136.9397 24.801773,126.76462 24.377811,116.58953 31.726632,112.72628 39.075158,108.86318 46.423831,105 c 7.419483,-0.51777 14.838669,-1.03553 22.258001,-1.55329 9.609997,0.51777 19.219608,1.03553 28.829412,1.55329 -0.635955,13.96788 -1.271886,27.93521 -1.907828,41.90281 -18.586317,-0.0707 -37.171889,-0.14132 -55.757833,-0.21198 -4.732057,0.14132 -9.463924,0.28264 -14.195886,0.42396 z"
+       transform="matrix(1.6283001,0,0,1.6265591,-32.075211,-34.527821)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:Baskerville;-inkscape-font-specification:Baskerville;text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;paint-order:stroke markers fill"
+       id="text8"
+       y="45.376446"
+       x="67.388115"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="font-size:8.46667px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+         x="67.388115"
+         y="45.376446">Stochastic Optimal</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:8.46667px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+         x="67.388115"
+         y="55.959782"
+         id="tspan9">Control</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.52974px;font-family:Baskerville;-inkscape-font-specification:Baskerville;text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;paint-order:stroke markers fill"
+       id="text8-2"
+       transform="translate(2.6458334,-3.1750001)"><textPath
+         xlink:href="#path9"
+         startOffset="50%"
+         id="textPath10"><tspan
+           style="font-size:8.52974px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+           id="tspan9-1">Uncertainty Quantification </tspan><tspan
+           style="font-size:8.52974px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+           id="tspan10" /></textPath></text>
+    <path
+       style="fill:#990000;fill-opacity:1;stroke:#000000;stroke-width:0.588335;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;paint-order:stroke markers fill;opacity:0.75"
+       d="m 216.8279,96.847007 c -13.86746,-3.796662 -26.93054,-16.924093 -29.47229,-29.343792 -2.54176,-12.4197 5.4375,-24.131196 13.61006,-28.056521 8.17255,-3.925325 16.53791,-0.06439 25.28962,-0.514889 8.75172,-0.4505 17.88926,-5.212317 24.8713,-4.3 6.98204,0.912317 11.80821,7.498599 12.93431,17.601712 1.1261,10.103112 -1.44785,23.722379 -10.07092,33.299263 -8.62307,9.576883 -23.29462,15.11089 -37.16208,11.314227 z"
+       id="path9"
+       inkscape:path-effect="#path-effect9"
+       inkscape:original-d="M 216.02353,106.17778 C 202.96044,93.050348 189.89736,79.922914 176.83427,66.795477 c 7.97958,-11.711963 15.95884,-23.423461 23.93827,-35.135192 8.36568,3.861088 16.73104,7.72202 25.09656,11.583029 9.13791,-4.762008 18.27545,-9.523825 27.41317,-14.285737 4.82636,6.586545 9.65253,13.172826 14.47879,19.759236 -2.57406,13.619816 -5.14801,27.239084 -7.72202,40.858625 -14.67213,5.534226 -29.34368,11.068232 -44.01551,16.602342 z"
+       transform="matrix(1.2520639,0,0,1.1306314,-48.455009,-10.492955)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.46667px;font-family:Baskerville;-inkscape-font-specification:Baskerville;text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;paint-order:stroke markers fill"
+       id="text8-3"
+       y="171.22092"
+       x="66.170258"><tspan
+         sodipodi:role="line"
+         style="font-size:8.46667px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+         x="66.170258"
+         y="171.22092"
+         id="tspan9-4">Reinforcement Learning</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:Baskerville;-inkscape-font-specification:Baskerville;text-align:center;text-anchor:middle;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:0.992157;paint-order:stroke markers fill"
+       id="text8-7"
+       y="61.946239"
+       x="233.8228"><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+         x="233.8228"
+         y="61.946239"
+         id="tspan9-41">Importance</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:7.05556px;fill:#000000;fill-opacity:1;stroke-width:0.1;stroke-dasharray:none"
+         x="233.8228"
+         y="70.765686"
+         id="tspan12">Sampling</tspan></text>
+  </g>
+</svg>

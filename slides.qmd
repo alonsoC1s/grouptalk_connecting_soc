@@ -1,9 +1,10 @@
 ---
 title: "Connecting SOC with RL -- Importance sampling"
 author: "Alonso Cisneros"
-institute: Freie Universität Berlin
+institute: Zuse Institute Berlin
 format:
     revealjs:
+        logo: "img/zib/ZIB_Logo_small.svg"
         output-file: index.html
         incremental: true
         html-math-method: mathjax
@@ -18,6 +19,10 @@ format:
         papersize: a4
         fig-align: center
         default-image-extension: pdf
+        header-includes:
+        - \logo{\ifnum\thepage>1\includegraphics[width=1cm]{img/zib/ZIB_Logo_small.png}\fi}
+        - \titlegraphic{\includegraphics[width=2.5cm]{img/zib/ZIB_Logo_blue.png}}
+
 bibliography: refs.bib
 lang: en-us
 self-contained: true
@@ -34,25 +39,13 @@ nocite: |
 ![](img/diagram1.svg)
 
 :::{.notes}
-What optimization models have we seen in the seminar so far?
+By the end of the talk these will all be connected. What I want to do is build the
+connection to yet another blob: ABMs
 :::
 
 -----
 
-![](img/diagram2.svg)
-
------
-
 ![](img/diagram3.svg)
-
-<!-- :::{.notes}
-- So far we've seen RL as a fancy tool to explore complicated spaces. Today, we're going
-to think of how the discipline of RL as a whole introduces new ideas to other areas of
-mathematics and creates new fertile ground.
-
-- Instead of finding ways of computing faster, we're looking for avenues to come up with entirely new ways of posing problems that allow us to use all of the work that was already invested in "AI"
-::: -->
-
 
 
 # Outline
@@ -65,11 +58,9 @@ mathematics and creates new fertile ground.
   - Optimal biasing
 
 4. Optimal biasing as an RL problem
-
-3. SOC ≠ RL
 :::
 
-5. The things I'd like to connect ^[Time permitting]
+5. The things I'd like to connect
 
 # Crash course on Reinforcement Learning
 
@@ -111,19 +102,7 @@ not, we carry out the accounting of how much rent is, and let the player know ho
 won/lost and to what square this is connected.
 :::
 
-## Can you describe the state space? {.center}
-
-. . . 
-
-::: {.r-fit-text}
-How does it _look_ like?
-:::
-
-## {.center}
-
-It's hard to describe the state space, but we can study the dynamics
-
-. . .
+## Dynamics of the space
 
 ::: {.r-stack}
 :::{.fragment .fade-out}
@@ -135,32 +114,35 @@ It's hard to describe the state space, but we can study the dynamics
 :::
 :::
 
-## What if we don't know how square transitions work?
-
-- We calculated transition probability _with_ the knowledge of the dice
-
-. . .
-
-## 5 minutes to think
-
-- What is a reasonable way of guessing transition probabilities?
-- Can I be sure to observe even improbable but still possible states?
-
-:::{.fragment}
-The right answers are:
-
-- By simulating the transitions and get empirical estimates
-- No
+:::{.notes}
+In this example we have full access to the dynamics of the problem. This is not always
+the case
 :::
+
+-----
+
+![](img/diagram_rl.svg)
 
 :::{.notes}
-- Without knowledge of the dice, we would be left to guess. 
+- We just reviewed very quickly the first bubble
 :::
+
+## What if we don't know how square transitions work?
+
+We calculated transition probability _with_ the knowledge of the dice
+
+:::{.notes}
+We'll now move on to MCMC. These concepts are not necessarily related, but I will take
+advantage of this example so that we can have a reasonable inutition from the start.
+:::
+
 
 ## Markov Chain Monte Carlo
 
 - We let the robot roam around and buy squares as it pleases
   - For any square, it can either buy it or not
+- We register what it gained or lost by buying or not buying a square by the end of the
+  game.
 
 ::: {.fragment .center}
 ![](img/hist-miniopoly.svg)
@@ -176,12 +158,22 @@ The right answers are:
   - i.e. When we buy squares we expect to profit from them, but clearly not all squares are as profitable, look at the different shapes of the distributions. On the other hand, it looks like losing any given square leads to the same expected loss
 :::
 
+-----
+
+![What we've covered so far](img/diagram_IS.svg)
+
+:::{.notes}
+Now we have introduced MCMC as a way for our robot to explore it's environment and
+estimate which moves are beneficial to his goal. This is what the diagram is representing
+
+
+Moving on...
+:::
+
 # Importance Sampling
 
-
 - We wanted to compute the expected reward of the robot after the entire game
-- Not every problem is this well behaved
-- This property is called _metastability_
+- MCMC often fails in metastable systems
 - Importance sampling aims to remedy this
 
 :::{.fragment .callout-important}
@@ -194,9 +186,6 @@ estimator of the desired quantity of interest
 - We **estimated** this quantity by observing and measuring an empirical average. But our
   approximation for extremely unlikely states will always be bad by virtue of how little
   samples we have.
-- Many problems, like molecular dynamics, chemical reactions, etc... have extremely like
-  states, and other extremely unlikely states. If we were to use MCMC, we would need
-  impractical amounts of time to simulate it and observe every state
 - Metastability makes MCMC extremely hard to apply. The variance of our estimations is
   always going to be enormous under these conditions
 - We can aim to make sampling faster by reducing the inherent variance
@@ -204,65 +193,10 @@ estimator of the desired quantity of interest
   to adding a control to the original process
 :::
 
------
-
-::: {.columns}
-::: {.column}
-```{julia}
-using WGLMakie
-using Makie
-using Bonito
-
-# Create a Figure
-fig = Figure()
-
-# Axis for the plot
-ax = Axis(
-    fig[1, 1],
-    title = "Double-well potential",
-    xlabel = "x",
-    ylabel = "y",
-    xrectzoom = false,
-    yrectzoom = false,
-  )
-
-# Create a SliderGrid to control 'a'
-slidergrid = SliderGrid(
-    fig[2, 1],
-    (label = "alpha", range = 0.1:0.1:5.0, startvalue = 1.0),
-    tellwidth = false,       # Keeps the slider label width flexible
-)
-
-# Access the slider value for 'a'
-a_value = slidergrid.sliders[1].value
-
-# Plot the function dynamically using lift
-x = LinRange(-2, 2, 500)  # Predefine x values
-lines!(ax, x, lift(a_value) do a
-    a .* (x .^ 2 .- 1) .^ 2  # Compute y dynamically
-end, color = :blue, linewidth = 2)
-
-# Display the figure
-fig
-```
-
-:::
-::: {.column}
-- We want to explore space
-  - We can't make it to the other well
-- The jumps are exponentially less probable w.r.t the height of the barrier
-:::
-:::
-<!-- end columns -->
-:::{.notes}
-- It turns out that there is an optimal way to design such a scheme, leading to
-substantially reduced mean hitting times which do not scale exponentially with the energy
-barrier anymore
-:::
 
 ## More formally...
 
-- The metastable stochastic system we sample from follows overdamped Langevin dynamics
+- The metastable stochastic system we sample from follows Langevin dynamics
 \begin{equation}
   \mathrm{d}X_s = - \nabla V(X_s) \, \mathrm{d}s + \sigma(X_s) \, \mathrm{d}W_s
 \end{equation}
@@ -284,6 +218,7 @@ barrier anymore
 - Where $\mathcal{W}$ serving as a measure of "work" over a trajectory
 :::
 
+
 -----
 
 Our main goal is to compute
@@ -296,7 +231,7 @@ But...
 . . .
 
 - MCMC has terrible properties because of metastability
-- No closed form exists
+- Closed forms of $\Psi(X)$ maybe don't exist
 
 . . .
 
@@ -359,10 +294,11 @@ $u^*$
 
 ## Connection to optimization
 
+
 It turns out ^[Feynman--Kac $\to$ Hopf--Cole Transformation $\to$ Hamilton-Jacobi-Bellman]
 that the problem of minimizing variance corresponds to a problem in optimal control
 
------
+. . .
 
 The cost functional $J$ to find the variance minimizing control is
 \begin{equation}
@@ -370,12 +306,13 @@ The cost functional $J$ to find the variance minimizing control is
 J(u; x) \coloneqq \mathbb{E}^x\left[\mathcal{W}(X^u) + \frac{1}{2} \int_0^{\tau^u} |u(X_s^u)|^2 \mathrm ds \right],
 \end{equation}
 
-So that
+-----
+
+With this formulation,
 \begin{equation}
     \Phi(x) = \inf_{u \in \mathcal{U}} J(u; x).
 \end{equation}
 
------
 
 :::{.callout-important}
 The optimal bias achieves zero variance:
@@ -386,8 +323,13 @@ The optimal bias achieves zero variance:
 
 # Optimal biasing through RL
 
+![](img/diagram_complete.svg)
+
+------
+
 - Let's reconsider the SOC problem (excuse the change in notation)
-- We discretize with Euler--Maruyama
+<!-- - We discretize with Euler--Maruyama -->
+- We discretize the dynamics equation
 \begin{align*}
 s_{t+1} &= s_t + \left( -\nabla V(s_t)  + \sigma u(s_t)\right) \Delta t + \sigma \, \sqrt{\Delta t} \, \eta_{t+1} \\
 s_0 &= x
@@ -407,6 +349,7 @@ s_0 &= x
 
 The time-discretized objective function is given by
 \begin{equation}
+\small
 J(u; x) \coloneqq \mathbb{E}^{x} \left[ g(s_{T_u}) + \sum_{t=0}^{T_{u-1}} f(s_t) \Delta t + \frac{1}{2} \sum_{t=0}^{T_{u-1}} |u(s_t)|^2 \Delta t \right]
 \end{equation}
 
@@ -442,7 +385,36 @@ at each time step but the choice of the running cost f and the final cost g can 
 this statement.
 :::
 
+-----
 
-# Future work
+![](img/diagram_complete.svg)
+
+# What I want to do {.nonincremental}
+
+- The connection [@BorrellConnecting24] works because of the properties of $J$
+
+- Two posibilities
+  1. Take the SOC already published in [@HelfmannInfluencers2023] and pose the _right_
+    cost functional (the "easy one")
+  2. Go back to the MFE and then
+    - Break the assumption of fully connected Agent-Agent network
+    - Find the MFE without that assumption
+    - Pose a SOC
+    - Find the right cost functional
+
+:::{.notes}
+- Half of the magic is the fact that the functional to be optimized to solve the optimal
+  biasing SOC problem leads to HJB. It's an open question whether I can make our SOC
+  compatible
+:::
+
+## What I'm trying at the moment
+
+- Approach it from the MFE side
+  - Looking for generalizations of McKean-Vlasov PDEs with time-dependent networks
+  - Thinking what graphon I can get from the network
+
+- Finding the right cost functional on the "easy" case
+
 
 # References

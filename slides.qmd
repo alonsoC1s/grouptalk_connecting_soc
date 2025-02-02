@@ -4,7 +4,6 @@ author: "Alonso Cisneros"
 institute: Zuse Institute Berlin
 format:
     revealjs:
-        logo: "img/zib/ZIB_Logo_small.svg"
         output-file: index.html
         incremental: true
         html-math-method: mathjax
@@ -58,13 +57,11 @@ connection to yet another blob: ABMs
   - Optimal biasing
 
 4. Optimal biasing as an RL problem
-:::
 
 5. The things I'd like to connect
+:::
 
 # Crash course on Reinforcement Learning
-
-. . .
 
 ![A miniopoly board](img/board.svg)
 
@@ -155,12 +152,14 @@ advantage of this example so that we can have a reasonable inutition from the st
   - The y axis shows the estimated rewards. i.e. money
   - The red distributions correspond to the expected reward when buying a square, while
     the blue the expected loss when not buying them
-  - i.e. When we buy squares we expect to profit from them, but clearly not all squares are as profitable, look at the different shapes of the distributions. On the other hand, it looks like losing any given square leads to the same expected loss
+  - i.e. When we buy squares we expect to profit from them, but clearly not all squares
+    are as profitable, look at the different shapes of the distributions. On the other hand,
+    it looks like losing any given square leads to the same expected loss
 :::
 
 -----
 
-![What we've covered so far](img/diagram_IS.svg)
+![](img/diagram_IS.svg)
 
 :::{.notes}
 Now we have introduced MCMC as a way for our robot to explore it's environment and
@@ -389,8 +388,9 @@ this statement.
 
 ![](img/diagram_complete.svg)
 
-# What I want to do {.nonincremental}
+# What I want to do
 
+::: {.nonincremental}
 - The connection [@BorrellConnecting24] works because of the properties of $J$
 
 - Two posibilities
@@ -401,6 +401,7 @@ this statement.
     - Find the MFE without that assumption
     - Pose a SOC
     - Find the right cost functional
+:::
 
 :::{.notes}
 - Half of the magic is the fact that the functional to be optimized to solve the optimal
@@ -410,11 +411,26 @@ this statement.
 
 ## What I'm trying at the moment
 
+::: {.nonincremental}
 - Approach it from the MFE side
   - Looking for generalizations of McKean-Vlasov PDEs with time-dependent networks
   - Thinking what graphon I can get from the network
 
 - Finding the right cost functional on the "easy" case
+:::
 
+## Bonus: Assortativity & network topology
+
+::: {.panel-tabset}
+
+### Start
+![](img/assort_1.svg){.center}
+
+### End
+![](img/assort_195.svg){.center}
+
+### End (echo chamber)
+![](img/assort_195_ec.svg){.center}
+:::
 
 # References

@@ -13,7 +13,6 @@ format:
         multiplex: true
         title-slide-attributes: 
           data-background-color: "#000099"
-        show-notes: separate-page
     beamer:
         papersize: a4
         fig-align: center

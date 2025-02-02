@@ -387,25 +387,28 @@ this statement.
 
 ![](img/diagram_complete.svg)
 
-# What I want to do
+# What I want to do {.small}
 
 ::: {.nonincremental}
 - The connection [@BorrellConnecting24] works because of the properties of $J$
-
-- Two posibilities
-  1. Take the SOC already published in [@HelfmannInfluencers2023] and pose the _right_
-    cost functional (the "easy one")
-  2. Go back to the MFE and then
-    - Break the assumption of fully connected Agent-Agent network
-    - Find the MFE without that assumption
-    - Pose a SOC
-    - Find the right cost functional
 :::
 
 :::{.notes}
 - Half of the magic is the fact that the functional to be optimized to solve the optimal
   biasing SOC problem leads to HJB. It's an open question whether I can make our SOC
   compatible
+:::
+
+## Two posibilities
+
+::: {.nonincremental}
+1. Take the SOC already published in [@HelfmannInfluencers2023] and pose the _right_
+  cost functional (the "easy one")
+2. Go back to the MFE and then
+  - Break the assumption of fully connected Agent-Agent network
+  - Find the MFE without that assumption
+  - Pose a SOC
+  - Find the right cost functional
 :::
 
 ## What I'm trying at the moment

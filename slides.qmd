@@ -100,14 +100,13 @@ won/lost and to what square this is connected.
 
 ## Dynamics of the space
 
-::: {.r-stack}
-:::{.fragment .fade-out}
-![](img/transicion.svg){.r-stretch}
-:::
+::: {.panel-tabset}
 
-:::{.fragment}
-![](img/transicion-markov.svg){.r-stretch}
-:::
+### Transitions from start
+![](img/transicion.svg){width="80%"}
+
+### Transition probabilities
+![](img/transicion-markov.svg){width="80%"}
 :::
 
 :::{.notes}
@@ -140,9 +139,10 @@ advantage of this example so that we can have a reasonable inutition from the st
 - We register what it gained or lost by buying or not buying a square by the end of the
   game.
 
-::: {.fragment .center}
+-----
+
 ![](img/hist-miniopoly.svg)
-:::
+
 
 :::{.notes}
 - Graph:
@@ -242,10 +242,11 @@ But...
 -----
 
 The new, controlled dynamics are now described as
-\begin{equation}
+\begin{align*}
 \label{eq: controlled langevin sde}
-\mathrm dX_s^u = (-\nabla V(X_s^u) + \sigma(X_s^u)  \,  u(X_s^u))\mathrm ds + \sigma(X_s^u) \mathrm dW_s, \qquad X_0^u = x 
-\end{equation}
+\mathrm dX_s^u &= (-\nabla V(X_s^u) + \sigma(X_s^u)  \,  u(X_s^u))\mathrm ds + \sigma(X_s^u) \mathrm dW_s, \\
+X_0^u &= x 
+\end{align*}
 
 . . .
 
